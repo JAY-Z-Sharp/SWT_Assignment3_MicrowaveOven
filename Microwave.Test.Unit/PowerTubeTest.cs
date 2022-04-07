@@ -40,7 +40,7 @@ namespace Microwave.Test.Unit
         public void TurnOn_WasOffCorrectPower_CorrectOutput(int power)
         {
             uut.TurnOn(power);
-            output.Received().OutputLine(Arg.Is<string>(str => str.Contains($"{power}")));
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains($"{power+1}")));
         }
 
         [TestCase(-5)]
