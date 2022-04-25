@@ -41,6 +41,8 @@ namespace Microwave.App
 
             timeButton.Press();
 
+            //timeButton.Press();
+
             startCancelButton.Press();
 
             // The simple sequence should now run
