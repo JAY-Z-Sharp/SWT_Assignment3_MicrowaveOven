@@ -51,7 +51,12 @@ namespace Microwave.Classes.Controllers
 
         public void AddCookingTime()
         {
+            myTimer.AddTwentySeconds();
+        }
 
+        public void SubtractCookingTime()
+        {
+            myTimer.SubtractTwentySeconds();
         }
 
         public void Stop()

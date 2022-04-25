@@ -13,5 +13,7 @@ namespace Microwave.Classes.Interfaces
         public int GetMaxPower();
 
         void AddCookingTime();
+
+        void SubtractCookingTime();
     }
 }
