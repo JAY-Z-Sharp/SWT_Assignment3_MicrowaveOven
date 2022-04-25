@@ -19,6 +19,7 @@ namespace Microwave.Test.Unit
 
         private IDisplay display;
         private ILight light;
+        private IBuzzer buzzer;
 
         private ICookController cooker;
 
@@ -30,6 +31,7 @@ namespace Microwave.Test.Unit
             startCancelButton = Substitute.For<IButton>();
             door = Substitute.For<IDoor>();
             light = Substitute.For<ILight>();
+            buzzer = Substitute.For<IBuzzer>();
             display = Substitute.For<IDisplay>();
             cooker = Substitute.For<ICookController>();
 
@@ -38,6 +40,7 @@ namespace Microwave.Test.Unit
                 door,
                 display,
                 light,
+                buzzer,
                 cooker);
         }
 
@@ -254,7 +257,7 @@ namespace Microwave.Test.Unit
 
             uut.CookingIsDone();
             light.Received(1).TurnOff();
-        }
+         }
 
         [Test]
         public void Cooking_CookingIsDone_ClearDisplay()
@@ -270,6 +273,22 @@ namespace Microwave.Test.Unit
             uut.CookingIsDone();
             display.Received(1).Clear();
         }
+
+        [Test]
+        public void Cooking_CookingIsDone_BuzzerSoundElapsed()
+        {
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in cooking
+
+            // Cooking is done
+            uut.CookingIsDone();
+            buzzer.Received(1).BuzzerSoundTimeElapsed();
+        }
+
 
         [Test]
         public void Cooking_DoorIsOpened_CookerCalled()
