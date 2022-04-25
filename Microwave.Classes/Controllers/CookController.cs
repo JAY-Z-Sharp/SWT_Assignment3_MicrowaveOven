@@ -56,7 +56,13 @@ namespace Microwave.Classes.Controllers
 
         public void SubtractCookingTime()
         {
-            myTimer.SubtractTwentySeconds();
+            var timeLeft = myTimer.SubtractTwentySeconds();
+            
+            if (timeLeft <= 0)
+            {
+                Stop();
+                myDisplay.Clear();
+            }
         }
 
         public void Stop()

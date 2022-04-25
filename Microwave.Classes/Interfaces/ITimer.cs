@@ -18,6 +18,6 @@ namespace Microwave.Classes.Interfaces
 
         void AddTwentySeconds();
 
-        void SubtractTwentySeconds();
+        int SubtractTwentySeconds();
     }
 }
