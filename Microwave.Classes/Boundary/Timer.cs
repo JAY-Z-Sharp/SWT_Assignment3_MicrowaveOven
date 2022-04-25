@@ -44,9 +44,10 @@ namespace Microwave.Classes.Boundary
             TimeRemaining += 20;
         }
 
-        public void SubtractTwentySeconds()
+        public int SubtractTwentySeconds()
         {
             TimeRemaining -= 20;
+            return TimeRemaining;
         }
 
         private void OnTimerEvent(object sender, System.Timers.ElapsedEventArgs args)

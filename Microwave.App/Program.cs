@@ -47,6 +47,9 @@ namespace Microwave.App
 
             // Test of substracting 20 seconds.
             subtractTimeButton.Press();
+            subtractTimeButton.Press();
+            subtractTimeButton.Press();
+
 
             // The simple sequence should now run
 
