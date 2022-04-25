@@ -11,6 +11,7 @@ namespace Microwave.App
             Button startCancelButton = new Button();
             Button powerButton = new Button();
             Button timeButton = new Button();
+            Button subtractTimeButton = new Button();
 
             Door door = new Door();
 
@@ -26,7 +27,7 @@ namespace Microwave.App
 
             CookController cooker = new CookController(timer, display, powerTube);
 
-            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker);
+            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, subtractTimeButton, door, display, light, cooker);
 
             // Finish the double association
             cooker.UI = ui;
@@ -37,9 +38,13 @@ namespace Microwave.App
 
             timeButton.Press();
 
+            startCancelButton.Press();
+
+            // Test of adding 20 seconds.
             //timeButton.Press();
 
-            startCancelButton.Press();
+            // Test of substracting 20 seconds.
+            subtractTimeButton.Press();
 
             // The simple sequence should now run
 

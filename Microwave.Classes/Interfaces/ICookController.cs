@@ -12,5 +12,7 @@ namespace Microwave.Classes.Interfaces
         void Stop();
 
         void AddCookingTime();
+
+        void SubtractCookingTime();
     }
 }
