@@ -378,6 +378,20 @@ namespace Microwave.Test.Unit
             cooker.Received(1).AddCookingTime();
         }
 
+        [Test]
+        public void Cooking_SubtractButton_CookerAddCookingTimeCalled()
+        {
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            cooker.Received(1).SubtractCookingTime();
+        }
+
     }
 
 }
