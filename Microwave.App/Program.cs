@@ -45,15 +45,11 @@ namespace Microwave.App
             startCancelButton.Press();
 
             // Test of adding 20 seconds.
-            //timeButton.Press();
+            timeButton.Press();
 
-            // Test af webhook
-
-            // Test of substracting 20 seconds.
-            subtractTimeButton.Press();
-            subtractTimeButton.Press();
-            subtractTimeButton.Press();
-
+            // Test of substracting 20 seconds: Comment in, to emulate to pushes to subtract.
+            //subtractTimeButton.Press();
+            //subtractTimeButton.Press();
 
             // The simple sequence should now run
 
