@@ -1,5 +1,6 @@
 ﻿using System;
 using Microwave.Classes.Interfaces;
+using static Microwave.Classes.Interfaces.IPowerTube;
 
 namespace Microwave.Classes.Boundary
 {
@@ -9,14 +10,9 @@ namespace Microwave.Classes.Boundary
 
         private bool IsOn = false;
 
-        public enum PowerSupplyEnum {
-            watt1000 = 1000,
-            watt800 = 800,
-            watt700 = 700,
-            watt500 = 500
-        }
+        
 
-        public PowerSupplyEnum PowerSupply { get;}
+        public PowerSupplyEnum PowerSupply { get; set; }
 
         public PowerTube(IOutput output, PowerSupplyEnum powerSupply)
         {
@@ -30,9 +26,14 @@ namespace Microwave.Classes.Boundary
             return (int)PowerSupply;
         }
 
+        public void SetMaxPower(PowerSupplyEnum maxPower)
+        {
+            PowerSupply = maxPower;
+        }
+
         public void TurnOn(int power)
         {
-            if (power < 1 || ((int)PowerSupply) < power)
+            if (power < 1 || GetMaxPower() < power)
             {
                 throw new ArgumentOutOfRangeException("power", power, "Must be between 1 and" + PowerSupply.ToString() + "(incl.)");
             }

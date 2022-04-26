@@ -1,4 +1,5 @@
 ﻿using System;
+using Microwave.Classes.Boundary;
 using Microwave.Classes.Controllers;
 using Microwave.Classes.Interfaces;
 using NSubstitute;
@@ -10,7 +11,6 @@ namespace Microwave.Test.Unit
     public class UserInterfaceTest
     {
         private UserInterface uut;
-
         private IButton powerButton;
         private IButton timeButton;
         private IButton startCancelButton;
@@ -21,7 +21,8 @@ namespace Microwave.Test.Unit
         private ILight light;
 
         private ICookController cooker;
-
+        private IPowerTube powerTube;
+        private Output output;
         [SetUp]
         public void Setup()
         {
@@ -32,6 +33,13 @@ namespace Microwave.Test.Unit
             light = Substitute.For<ILight>();
             display = Substitute.For<IDisplay>();
             cooker = Substitute.For<ICookController>();
+            output = new Output();
+            powerTube = Substitute.For<IPowerTube>();
+
+            cooker.GetMaxPower().Returns(700);
+                //new PowerTube(output, IPowerTube.PowerSupplyEnum.watt700);
+
+            //powerTube.SetMaxPower(700);
 
             uut = new UserInterface(
                 powerButton, timeButton, startCancelButton,

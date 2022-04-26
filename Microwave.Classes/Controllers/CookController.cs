@@ -37,6 +37,11 @@ namespace Microwave.Classes.Controllers
             timer.TimerTick += new EventHandler(OnTimerTick);
         }
 
+        public int GetMaxPower()
+        {
+            return myPowerTube.GetMaxPower();
+        }
+
         public void StartCooking(int power, int time)
         {
             myPowerTube.TurnOn(power);

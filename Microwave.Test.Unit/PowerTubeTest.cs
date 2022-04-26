@@ -16,8 +16,21 @@ namespace Microwave.Test.Unit
         public void Setup()
         {
             output = Substitute.For<IOutput>();
-            uut = new PowerTube(output);
+            uut = new PowerTube(output, IPowerTube.PowerSupplyEnum.watt700);
         }
+
+        [TestCase(IPowerTube.PowerSupplyEnum.watt1000, 1000)]
+        [TestCase(IPowerTube.PowerSupplyEnum.watt800, 800)]
+        [TestCase(IPowerTube.PowerSupplyEnum.watt700, 700)]
+        [TestCase(IPowerTube.PowerSupplyEnum.watt500, 500)]
+        public void PowerTubeConstructor_CanCreate_CreatesAll(IPowerTube.PowerSupplyEnum myEnum, int compare)
+        {
+            uut = new PowerTube(output, myEnum);
+            int maxPower =  uut.GetMaxPower();
+
+            Assert.That(maxPower, Is.EqualTo(compare));
+        }
+
 
         [TestCase(1)]
         [TestCase(50)]

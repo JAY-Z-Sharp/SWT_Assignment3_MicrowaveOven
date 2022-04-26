@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using Microwave.Classes.Boundary;
 using Microwave.Classes.Interfaces;
 
 namespace Microwave.Classes.Controllers
@@ -27,7 +28,8 @@ namespace Microwave.Classes.Controllers
             IDoor door,
             IDisplay display,
             ILight light,
-            ICookController cooker)
+            ICookController cooker
+             )
         {
             powerButton.Pressed += new EventHandler(OnPowerPressed);
             timeButton.Pressed += new EventHandler(OnTimePressed);
@@ -49,6 +51,7 @@ namespace Microwave.Classes.Controllers
 
         public void OnPowerPressed(object sender, EventArgs e)
         {
+            //Console.WriteLine(myPowerTube.GetMaxPower());
             switch (myState)
             {
                 case States.READY:
@@ -56,7 +59,7 @@ namespace Microwave.Classes.Controllers
                     myState = States.SETPOWER;
                     break;
                 case States.SETPOWER:
-                    powerLevel = (powerLevel >= 700 ? 50 : powerLevel+50);
+                    powerLevel = (powerLevel >= myCooker.GetMaxPower() ? 50 : powerLevel+50);
                     myDisplay.ShowPower(powerLevel);
                     break;
             }

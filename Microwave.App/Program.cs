@@ -1,6 +1,7 @@
 ﻿using System;
 using Microwave.Classes.Boundary;
 using Microwave.Classes.Controllers;
+using Microwave.Classes.Interfaces;
 
 namespace Microwave.App
 {
@@ -8,6 +9,7 @@ namespace Microwave.App
     {
         static void Main(string[] args)
         {
+            
             Button startCancelButton = new Button();
             Button powerButton = new Button();
             Button timeButton = new Button();
@@ -18,7 +20,7 @@ namespace Microwave.App
 
             Display display = new Display(output);
 
-            PowerTube powerTube = new PowerTube(output);
+            PowerTube powerTube = new PowerTube(output, IPowerTube.PowerSupplyEnum.watt700);
 
             Light light = new Light(output);
 
