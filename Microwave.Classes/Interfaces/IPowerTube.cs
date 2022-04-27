@@ -27,6 +27,5 @@ namespace Microwave.Classes.Interfaces
 
         int GetMaxPower();
 
-        void SetMaxPower(PowerSupplyEnum maxPower);
     }
 }
