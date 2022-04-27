@@ -38,6 +38,8 @@ namespace Microwave.App
 
             // Simulate a simple sequence
 
+            // Test af master jenkins
+
             powerButton.Press();
 
             timeButton.Press();
