@@ -13,6 +13,7 @@ namespace Microwave.App
             Button startCancelButton = new Button();
             Button powerButton = new Button();
             Button timeButton = new Button();
+            Button subtractTimeButton = new Button();
 
             Door door = new Door();
 
@@ -30,18 +31,27 @@ namespace Microwave.App
 
             CookController cooker = new CookController(timer, display, powerTube);
 
-            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, buzzer, cooker);
+            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, subtractTimeButton, door, display, light, buzzer, cooker);
 
             // Finish the double association
             cooker.UI = ui;
 
             // Simulate a simple sequence
 
+            // Test af master jenkins
+
             powerButton.Press();
 
             timeButton.Press();
 
             startCancelButton.Press();
+
+            // Test of adding 20 seconds.
+            timeButton.Press();
+
+            // Test of substracting 20 seconds: Comment in, to emulate to pushes to subtract.
+            //subtractTimeButton.Press();
+            //subtractTimeButton.Press();
 
             // The simple sequence should now run
 

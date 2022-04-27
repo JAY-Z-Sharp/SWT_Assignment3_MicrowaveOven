@@ -23,6 +23,7 @@ namespace Microwave.Test.Unit
             timer = Substitute.For<ITimer>();
             display = Substitute.For<IDisplay>();
             powerTube = Substitute.For<IPowerTube>();
+            powerTube.GetMaxPower().Returns(700);
 
             uut = new CookController(timer, display, powerTube, ui);
         }
@@ -81,6 +82,42 @@ namespace Microwave.Test.Unit
             uut.Stop();
 
             powerTube.Received().TurnOff();
+        }
+
+        [Test]
+        public void Cooking_AddTimeDuringCooking_TimerCalled()
+        {
+            uut.StartCooking(50, 60);
+            uut.AddCookingTime();
+            
+            timer.Received(1).AddTwentySeconds();
+        }
+
+        [Test]
+        public void Cooking_SubtractTimeDuringCooking_TimerCalled()
+        {
+            uut.StartCooking(50, 60);
+            uut.SubtractCookingTime();
+
+            timer.Received(1).SubtractTwentySeconds();
+        }
+
+        [Test]
+        public void Cooking_SubtractMoreTimeThanLeftDuringCooking_CookingStoppedDisplayCleared()
+        {
+            uut.StartCooking(50, 10);
+            uut.SubtractCookingTime();
+
+            timer.Received(1).SubtractTwentySeconds();
+            display.Received(1).Clear();
+        }
+
+        [TestCase(700)]
+        public void GetMaxPower_CallGetMaxPower_CorrectReturnValue(int compare)
+        {
+        
+           int result = uut.GetMaxPower();
+            Assert.That(result, Is.EqualTo(compare));
         }
 
     }
