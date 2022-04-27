@@ -31,6 +31,7 @@ namespace Microwave.Test.Unit
             Assert.That(maxPower, Is.EqualTo(compare));
         }
 
+       
 
         [TestCase(1)]
         [TestCase(50)]
