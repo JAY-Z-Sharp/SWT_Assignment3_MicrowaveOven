@@ -26,10 +26,7 @@ namespace Microwave.Classes.Boundary
             return (int)PowerSupply;
         }
 
-        public void SetMaxPower(PowerSupplyEnum maxPower)
-        {
-            PowerSupply = maxPower;
-        }
+       
 
         public void TurnOn(int power)
         {
