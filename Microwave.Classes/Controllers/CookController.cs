@@ -49,6 +49,22 @@ namespace Microwave.Classes.Controllers
             isCooking = true;
         }
 
+        public void AddCookingTime()
+        {
+            myTimer.AddTwentySeconds();
+        }
+
+        public void SubtractCookingTime()
+        {
+            var timeLeft = myTimer.SubtractTwentySeconds();
+            
+            if (timeLeft <= 0)
+            {
+                Stop();
+                myDisplay.Clear();
+            }
+        }
+
         public void Stop()
         {
             isCooking = false;
